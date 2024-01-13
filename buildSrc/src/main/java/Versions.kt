@@ -1,6 +1,6 @@
 object Versions {
 
-    const val GRADLE = "8.1.3"
+    const val GRADLE = "8.2.0"
     const val KOTLIN = "1.9.10"
     const val COMPOSE_COMPILER = "1.5.3"
     const val HILT = "2.48"

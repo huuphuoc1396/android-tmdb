@@ -1,12 +1,12 @@
 object Configs {
 
-    const val APP_ID = "co.nimblehq.surveys"
-    const val NAMSPACE = "co.nimblehq.surveys"
+    const val APP_ID = "com.example.tmdb"
+    const val NAMESPACE = "com.example.tmdb"
 
     const val VERSION_CODE = 1
     const val VERSION_NAME = "1.0.0"
 
-    const val COMPLIE_SDK = 34
+    const val COMPILE_SDK = 34
     const val MIN_SDK = 23
     const val TARGET_SDK = 34
 
