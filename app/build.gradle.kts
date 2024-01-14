@@ -86,7 +86,7 @@ android {
 
 dependencies {
 
-
+    implementation(project(Modules.DATA))
     implementation(project(Modules.DOMAIN))
 
     implementation(Libs.AndroidX.CORE_KTX)

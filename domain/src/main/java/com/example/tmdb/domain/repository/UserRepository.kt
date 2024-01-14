@@ -5,5 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
 
+    suspend fun fetchUser()
+
     fun getUser(): Flow<UserModel>
 }
