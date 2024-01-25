@@ -8,4 +8,6 @@ interface UserRepository {
     suspend fun fetchUser()
 
     fun getUser(): Flow<UserModel>
+
+    suspend fun login(username: String, password: String)
 }

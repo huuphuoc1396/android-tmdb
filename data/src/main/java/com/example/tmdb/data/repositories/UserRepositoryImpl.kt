@@ -13,6 +13,15 @@ class UserRepositoryImpl @Inject constructor(
     private val encryptedUserDatastore: EncryptedUserDatastore,
 ) : UserRepository {
 
+    override suspend fun login(username: String, password: String) {
+        // TODO("Request login API")
+        if (username == "user01" && password == "1234") {
+            // Login success
+        } else {
+            throw Exception("Login failed")
+        }
+    }
+
     override suspend fun fetchUser() {
         val userResponse = authApiService.getUser().data
         val userModel = userResponse?.toUserModel()

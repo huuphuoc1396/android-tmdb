@@ -1,4 +1,4 @@
-package com.example.tmdb.ui.features.splash
+package com.example.tmdb.ui.features.main
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,21 +12,21 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.tmdb.ui.theme.AppTheme
 
 @Composable
-fun SplashScreen(
+fun MainScreen(
     modifier: Modifier = Modifier,
-    viewModel: SplashViewModel = hiltViewModel(),
+    viewModel: MainViewModel = hiltViewModel(),
 ) {
-    SplashContent(modifier)
+    MainContent(modifier)
 }
 
 @Composable
-private fun SplashContent(modifier: Modifier = Modifier) {
+private fun MainContent(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = "TMDB",
+            text = "Main Screen",
             style = MaterialTheme.typography.h3,
         )
     }
@@ -34,8 +34,8 @@ private fun SplashContent(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun SplashScreenPreview() {
+fun MainScreenPreview() {
     AppTheme {
-        SplashContent()
+        MainContent()
     }
 }
