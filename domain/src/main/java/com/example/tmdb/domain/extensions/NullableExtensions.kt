@@ -1,6 +1,6 @@
 package com.example.tmdb.domain.extensions
 
-import java.util.*
+import java.util.Date
 
 fun String?.defaultEmpty(): String {
     return this.default("")

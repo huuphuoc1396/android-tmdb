@@ -1,7 +1,7 @@
 package com.example.tmdb.data.services.providers
 
 import com.example.tmdb.data.services.AuthService
-import com.example.tmdb.data.services.NonAuthService
+import com.example.tmdb.data.services.NoAuthService
 import retrofit2.Retrofit
 
 object ApiServiceProvider {
@@ -19,8 +19,8 @@ object ApiServiceProvider {
     val key2: String
         get() = getApiKey(2)
 
-    fun getNonAuthService(retrofit: Retrofit): NonAuthService {
-        return retrofit.create(NonAuthService::class.java)
+    fun getNoAuthService(retrofit: Retrofit): NoAuthService {
+        return retrofit.create(NoAuthService::class.java)
     }
 
     fun getAuthService(retrofit: Retrofit): AuthService {

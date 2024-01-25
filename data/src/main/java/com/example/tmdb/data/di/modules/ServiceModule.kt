@@ -2,9 +2,9 @@ package com.example.tmdb.data.di.modules
 
 import com.example.tmdb.data.BuildConfig
 import com.example.tmdb.data.di.annotations.AuthClient
-import com.example.tmdb.data.di.annotations.NonAuthClient
+import com.example.tmdb.data.di.annotations.NoAuthClient
 import com.example.tmdb.data.services.AuthService
-import com.example.tmdb.data.services.NonAuthService
+import com.example.tmdb.data.services.NoAuthService
 import com.example.tmdb.data.services.providers.ApiServiceProvider
 import com.example.tmdb.data.services.providers.CallAdapterFactoryProvider
 import com.example.tmdb.data.services.providers.ConverterFactoryProvider
@@ -36,10 +36,10 @@ class ServiceModule {
         CallAdapterFactoryProvider.getMappingApiErrorCallAdapterFactory()
 
     @Provides
-    @NonAuthClient
-    fun provideNonAuthRetrofit(
+    @NoAuthClient
+    fun provideNoAuthRetrofit(
         baseUrl: String,
-        @NonAuthClient okHttpClient: OkHttpClient,
+        @NoAuthClient okHttpClient: OkHttpClient,
         converterFactory: Converter.Factory,
         callAdapterFactory: CallAdapter.Factory,
     ): Retrofit = RetrofitProvider
@@ -52,9 +52,9 @@ class ServiceModule {
         .build()
 
     @Provides
-    fun provideNonAuthService(
-        @NonAuthClient retrofit: Retrofit
-    ): NonAuthService = ApiServiceProvider.getNonAuthService(retrofit)
+    fun provideNoAuthService(
+        @NoAuthClient retrofit: Retrofit
+    ): NoAuthService = ApiServiceProvider.getNoAuthService(retrofit)
 
     @Provides
     @AuthClient

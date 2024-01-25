@@ -6,7 +6,7 @@ import com.example.tmdb.data.services.responses.token.RefreshTokenResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface NonAuthService {
+interface NoAuthService {
     @POST("/api/v1/refreshToken")
     suspend fun refreshToken(@Body request: RefreshTokenRequest): DataResponse<RefreshTokenResponse>
 }

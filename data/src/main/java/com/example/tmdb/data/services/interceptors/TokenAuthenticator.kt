@@ -1,6 +1,6 @@
 package com.example.tmdb.data.services.interceptors
 
-import com.example.tmdb.data.services.NonAuthService
+import com.example.tmdb.data.services.NoAuthService
 import com.example.tmdb.data.services.requests.RefreshTokenRequest
 import com.example.tmdb.data.storages.datastores.EncryptedPrefsDatastore
 import com.example.tmdb.domain.extensions.defaultEmpty
@@ -14,7 +14,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class TokenAuthenticator @Inject constructor(
-    private val nonAuthService: NonAuthService,
+    private val noAuthService: NoAuthService,
     private val encryptedPrefsDatastore: EncryptedPrefsDatastore,
 ) : Authenticator {
 
@@ -31,7 +31,7 @@ class TokenAuthenticator @Inject constructor(
             .firstOrNull() ?: return@runBlocking ""
         val request = RefreshTokenRequest(refreshToken)
         val data = try {
-            nonAuthService.refreshToken(request).data
+            noAuthService.refreshToken(request).data
         } catch (e: Exception) {
             Timber.e(e)
             null

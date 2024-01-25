@@ -3,7 +3,7 @@ package com.example.tmdb.data.di.modules
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.tmdb.data.di.annotations.AuthClient
-import com.example.tmdb.data.di.annotations.NonAuthClient
+import com.example.tmdb.data.di.annotations.NoAuthClient
 import com.example.tmdb.data.services.interceptors.AuthInterceptor
 import com.example.tmdb.data.services.interceptors.HeaderInterceptor
 import com.example.tmdb.data.services.interceptors.TokenAuthenticator
@@ -20,8 +20,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 class OkHttpClientModule {
 
     @Provides
-    @NonAuthClient
-    fun provideNonAuthOkHttpClient(
+    @NoAuthClient
+    fun provideNoAuthOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         chuckerInterceptor: ChuckerInterceptor,
         headerInterceptor: HeaderInterceptor,
