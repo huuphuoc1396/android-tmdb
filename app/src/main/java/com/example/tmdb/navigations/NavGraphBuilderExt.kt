@@ -15,7 +15,7 @@ fun NavGraphBuilder.composable(
     content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit
 ) {
     composable(
-        route = destination.fullRoute,
+        route = destination.route,
         arguments = arguments,
         deepLinks = deepLinks,
         content = content,

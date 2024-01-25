@@ -18,7 +18,7 @@ fun MainNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = SplashDestination.fullRoute,
+        startDestination = SplashDestination.route,
         modifier = modifier,
         route = route,
     ) {

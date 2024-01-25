@@ -1,8 +1,8 @@
 package com.example.tmdb.navigations
 
-open class Destination(protected val route: String, vararg params: String) {
-    val fullRoute: String = if (params.isEmpty()) route else {
-        val builder = StringBuilder(route)
+open class Destination(protected val name: String, vararg params: String) {
+    val route: String = if (params.isEmpty()) name else {
+        val builder = StringBuilder(name)
         params.forEach { builder.append("/{${it}}") }
         builder.toString()
     }
@@ -11,10 +11,12 @@ open class Destination(protected val route: String, vararg params: String) {
 internal fun String.appendParams(vararg params: Pair<String, Any?>): String {
     val builder = StringBuilder(this)
 
-    params.forEach {
-        it.second?.toString()?.let { arg ->
-            builder.append("/$arg")
-        }
+    params.forEach { param ->
+        param.second
+            ?.toString()
+            ?.let { arg ->
+                builder.append("/$arg")
+            }
     }
 
     return builder.toString()
