@@ -1,6 +1,7 @@
 package com.example.tmdb.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -10,6 +11,7 @@ import com.example.tmdb.ui.features.splash.SplashScreen
 import com.example.tmdb.navigations.composable
 import com.example.tmdb.ui.features.login.LoginScreen
 
+@ExperimentalComposeUiApi
 @Composable
 fun MainNavHost(
     navController: NavHostController,

@@ -1,4 +1,4 @@
-package com.example.tmdb.ui.features.loading
+package com.example.tmdb.commons.loading
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -15,7 +15,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 fun LoadingContent(
     isLoading: Boolean,
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit = { },
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     Box(
