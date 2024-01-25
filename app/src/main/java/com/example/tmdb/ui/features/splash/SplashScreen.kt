@@ -6,17 +6,25 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.tmdb.components.screen.ScreenContent
 import com.example.tmdb.ui.theme.AppTheme
 
+@ExperimentalComposeUiApi
 @Composable
 fun SplashScreen(
     modifier: Modifier = Modifier,
     viewModel: SplashViewModel = hiltViewModel(),
 ) {
-    SplashContent(modifier)
+    ScreenContent(
+        viewModel = viewModel,
+        modifier = modifier,
+    ) {
+        SplashContent(modifier)
+    }
 }
 
 @Composable

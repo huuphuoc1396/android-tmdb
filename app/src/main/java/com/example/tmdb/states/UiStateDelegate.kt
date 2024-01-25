@@ -1,15 +1,11 @@
-package com.example.tmdb.delegates
+package com.example.tmdb.states
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.reduce
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
@@ -31,7 +27,7 @@ interface UiStateDelegate<UiState, Event> {
 
     /**
      * State is read-only
-     * The only way to change the state is to emit[reduce] an action,
+     * The only way to change the state is to emit[update] an action,
      * an object describing what happened.
      */
     val UiStateDelegate<UiState, Event>.uiState: UiState
@@ -41,27 +37,15 @@ interface UiStateDelegate<UiState, Event> {
      *
      * @param transform  - function to transform UI state.
      */
-    suspend fun UiStateDelegate<UiState, Event>.reduce(
+    suspend fun UiStateDelegate<UiState, Event>.update(
         transform: (uiState: UiState) -> UiState,
     )
 
-    /**
-     * Changing the state without blocking the coroutine.
-     */
-    fun UiStateDelegate<UiState, Event>.reduceAsync(
-        coroutineScope: CoroutineScope,
-        transform: (state: UiState) -> UiState,
-    ): Job
-
     suspend fun UiStateDelegate<UiState, Event>.sendEvent(event: Event)
 
-    fun showLoading()
+    suspend fun setError(error: Throwable?)
 
-    fun hideLoading()
-
-    fun showError(error: Throwable)
-
-    fun hideError()
+    suspend fun setLoading(isLoading: Boolean)
 }
 
 /**
@@ -76,6 +60,8 @@ class UiStateDelegateImpl<UiState, Event>(
     initialUiState: UiState,
     singleLiveEventCapacity: Int = Channel.BUFFERED,
     private val mutexState: Mutex = Mutex(),
+    private val mutexLoading: Mutex = Mutex(),
+    private val mutexError: Mutex = Mutex(),
 ) : UiStateDelegate<UiState, Event> {
 
     /**
@@ -104,7 +90,7 @@ class UiStateDelegateImpl<UiState, Event>(
     override val error: StateFlow<Throwable?>
         get() = _errorChannel
 
-    override suspend fun UiStateDelegate<UiState, Event>.reduce(
+    override suspend fun UiStateDelegate<UiState, Event>.update(
         transform: (uiState: UiState) -> UiState,
     ) {
         mutexState.withLock {
@@ -116,28 +102,15 @@ class UiStateDelegateImpl<UiState, Event>(
         singleEventsChannel.send(event)
     }
 
-    override fun UiStateDelegate<UiState, Event>.reduceAsync(
-        coroutineScope: CoroutineScope,
-        transform: (state: UiState) -> UiState,
-    ): Job {
-        return coroutineScope.launch {
-            reduce { state -> transform(state) }
+    override suspend fun setLoading(isLoading: Boolean) {
+        mutexLoading.withLock {
+            _isLoading.emit(isLoading)
         }
     }
 
-    override fun showLoading() {
-        _isLoading.value = true
-    }
-
-    override fun hideLoading() {
-        _isLoading.value = false
-    }
-
-    override fun showError(error: Throwable) {
-        _errorChannel.value = error
-    }
-
-    override fun hideError() {
-        _errorChannel.value = null
+    override suspend fun setError(error: Throwable?) {
+        mutexError.withLock {
+            _errorChannel.emit(error)
+        }
     }
 }

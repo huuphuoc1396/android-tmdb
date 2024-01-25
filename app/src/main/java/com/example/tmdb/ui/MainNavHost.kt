@@ -5,11 +5,13 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.example.tmdb.navigations.composable
 import com.example.tmdb.ui.features.login.LoginDestination
+import com.example.tmdb.ui.features.login.LoginScreen
+import com.example.tmdb.ui.features.main.MainDestination
+import com.example.tmdb.ui.features.main.MainScreen
 import com.example.tmdb.ui.features.splash.SplashDestination
 import com.example.tmdb.ui.features.splash.SplashScreen
-import com.example.tmdb.navigations.composable
-import com.example.tmdb.ui.features.login.LoginScreen
 
 @ExperimentalComposeUiApi
 @Composable
@@ -30,6 +32,10 @@ fun MainNavHost(
 
         composable(destination = LoginDestination) {
             LoginScreen()
+        }
+
+        composable(destination = MainDestination) {
+            MainScreen()
         }
     }
 }

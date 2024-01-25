@@ -1,4 +1,4 @@
-package com.example.tmdb.commons.loading
+package com.example.tmdb.components.loading
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box

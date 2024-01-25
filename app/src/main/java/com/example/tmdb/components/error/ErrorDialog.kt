@@ -1,4 +1,4 @@
-package com.example.tmdb.commons.error
+package com.example.tmdb.components.error
 
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Text

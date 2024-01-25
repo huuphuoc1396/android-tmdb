@@ -1,14 +1,10 @@
 package com.example.tmdb.ui.features.login
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.tmdb.delegates.UiStateDelegate
-import com.example.tmdb.delegates.UiStateDelegateImpl
 import com.example.tmdb.domain.extensions.defaultEmpty
 import com.example.tmdb.domain.usecases.LoginParams
 import com.example.tmdb.domain.usecases.LoginUseCase
-import com.example.tmdb.extensions.launch
 import com.example.tmdb.navigations.Navigator
+import com.example.tmdb.states.UiStateViewModel
 import com.example.tmdb.ui.features.login.LoginViewModel.Event
 import com.example.tmdb.ui.features.login.LoginViewModel.UiState
 import com.example.tmdb.ui.features.main.MainDestination
@@ -19,8 +15,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val navigator: Navigator,
     private val loginUseCase: LoginUseCase,
-) : ViewModel(),
-    UiStateDelegate<UiState, Event> by UiStateDelegateImpl(UiState()) {
+) : UiStateViewModel<UiState, Event>(UiState()) {
 
     data class UiState(
         val username: String = "",
@@ -32,21 +27,20 @@ class LoginViewModel @Inject constructor(
     }
 
     fun updateUsername(username: String) {
-        reduceAsync(viewModelScope) { data -> data.copy(username = username) }
+        updateAsync { data -> data.copy(username = username) }
     }
 
     fun updatePassword(password: String) {
-        reduceAsync(viewModelScope) { uiState -> uiState.copy(password = password) }
+        updateAsync { uiState -> uiState.copy(password = password) }
     }
 
     fun login() {
-        launch(loading = this) {
-            loginUseCase(
-                LoginParams(
-                    username = uiState.username,
-                    password = uiState.password,
-                )
+        launchWithLoading {
+            val loginParam = LoginParams(
+                username = uiState.username,
+                password = uiState.password,
             )
+            loginUseCase(loginParam)
                 .onSuccess {
                     navigator.navigateTo(MainDestination())
                 }

@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.tmdb.R
-import com.example.tmdb.commons.body.BodyContent
+import com.example.tmdb.components.screen.ScreenContent
 import com.example.tmdb.extensions.showToast
 import com.example.tmdb.ui.theme.AppTheme
 
@@ -34,8 +34,8 @@ fun LoginScreen(
     context: Context = LocalContext.current,
     viewModel: LoginViewModel = hiltViewModel(),
 ) {
-    BodyContent(
-        uiStateDelegate = viewModel,
+    ScreenContent(
+        viewModel = viewModel,
         modifier = modifier,
         onEventEffect = { event ->
             when (event) {
