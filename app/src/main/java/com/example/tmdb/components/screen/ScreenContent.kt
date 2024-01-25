@@ -6,7 +6,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import com.example.tmdb.components.error.ErrorDialog
 import com.example.tmdb.components.loading.LoadingContent
-import com.example.tmdb.domain.extensions.defaultEmpty
 import com.example.tmdb.states.SingleEventEffect
 import com.example.tmdb.states.UiStateViewModel
 import com.example.tmdb.states.collectError
@@ -30,9 +29,10 @@ fun <UiState, Event> ScreenContent(
     ) {
         if (error != null) {
             ErrorDialog(
+                error = error!!,
                 onOkClick = viewModel::hideError,
                 onDismiss = viewModel::hideError,
-                message = error?.message.defaultEmpty(),
+                onRedirectToLogin = viewModel::redirectToLogin,
             )
         }
         content(uiState)

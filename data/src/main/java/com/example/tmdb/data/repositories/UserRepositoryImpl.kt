@@ -20,7 +20,7 @@ class UserRepositoryImpl @Inject constructor(
         if (username == "user01" && password == "1234") {
             // Login success
         } else {
-            throw Exception("Login failed")
+            throw Exception("Your username or password is incorrect!")
         }
     }
 

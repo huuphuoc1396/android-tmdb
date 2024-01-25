@@ -1,16 +1,17 @@
 package com.example.tmdb.ui.features.splash
 
+import com.example.tmdb.navigations.LoginDestination
 import com.example.tmdb.navigations.Navigator
+import com.example.tmdb.navigations.SplashDestination
 import com.example.tmdb.states.NoUiStateViewModel
-import com.example.tmdb.ui.features.login.LoginDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    private val navigator: Navigator
-) : NoUiStateViewModel() {
+    navigator: Navigator
+) : NoUiStateViewModel(navigator) {
 
     companion object {
         private const val SPLASH_DELAY = 1500L
@@ -23,7 +24,7 @@ class SplashViewModel @Inject constructor(
     private fun showSplash() {
         launch {
             delay(SPLASH_DELAY)
-            navigator.navigateTo(
+            navigateTo(
                 route = LoginDestination(),
                 popUpToRoute = SplashDestination(),
                 inclusive = true,

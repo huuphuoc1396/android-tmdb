@@ -2,10 +2,11 @@ package com.example.tmdb.states
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.tmdb.navigations.LoginDestination
+import com.example.tmdb.navigations.Navigator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
@@ -14,33 +15,30 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 abstract class UiStateViewModel<UiState, Event>(
-    initialUiState: UiState,
-    singleLiveEventCapacity: Int = Channel.BUFFERED,
-    uiStateDelegateImpl: UiStateDelegateImpl<UiState, Event> = UiStateDelegateImpl(
-        initialUiState = initialUiState,
-        singleLiveEventCapacity = singleLiveEventCapacity,
-    ),
+    navigator: Navigator,
+    uiStateDelegate: UiStateDelegate<UiState, Event>,
 ) : ViewModel(),
-    UiStateDelegate<UiState, Event> by uiStateDelegateImpl {
+    UiStateDelegate<UiState, Event> by uiStateDelegate,
+    Navigator by navigator {
 
     open fun updateAsync(transform: (uiState: UiState) -> UiState) {
-        viewModelScope.launch { update(transform) }
+        launch { update(transform) }
     }
 
     open fun showLoading() {
-        viewModelScope.launch { setLoading(true) }
+        launch { setLoading(true) }
     }
 
     open fun hideLoading() {
-        viewModelScope.launch { setLoading(false) }
+        launch { setLoading(false) }
     }
 
     open fun showError(t: Throwable) {
-        viewModelScope.launch { setError(t) }
+        launch { setError(t) }
     }
 
     open fun hideError() {
-        viewModelScope.launch { setError(null) }
+        launch { setError(null) }
     }
 
     open fun launch(
@@ -75,4 +73,14 @@ abstract class UiStateViewModel<UiState, Event>(
     open fun <T> Flow<T>.injectLoading(): Flow<T> = this
         .onStart { showLoading() }
         .onEach { hideLoading() }
+
+    fun redirectToLogin() {
+        launch {
+            navigateTo(
+                route = LoginDestination(),
+                popUpToRoute = LoginDestination(),
+                inclusive = true,
+            )
+        }
+    }
 }

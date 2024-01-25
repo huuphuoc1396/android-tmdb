@@ -4,7 +4,9 @@ import com.example.tmdb.data.services.providers.MoshiBuilderProvider
 import com.example.tmdb.data.services.responses.error.ErrorResponse
 import com.example.tmdb.domain.extensions.defaultEmpty
 import com.example.tmdb.domain.extensions.defaultZero
-import com.example.tmdb.domain.models.errors.ApiError
+import com.example.tmdb.domain.models.errors.NoConnectionError
+import com.example.tmdb.domain.models.errors.ServerError
+import com.example.tmdb.domain.models.errors.UnauthorizedError
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call
@@ -79,7 +81,7 @@ class MappingApiErrorCallback<R>(
     override fun onFailure(call: Call<R>, t: Throwable) {
         when (t) {
             is UnknownHostException,
-            is InterruptedIOException -> delegate.onFailure(call, ApiError.NoConnection)
+            is InterruptedIOException -> delegate.onFailure(call, NoConnectionError)
 
             else -> delegate.onFailure(call, t)
         }
@@ -87,7 +89,7 @@ class MappingApiErrorCallback<R>(
 
     private fun parseErrorResponse(response: Response<*>?): Throwable {
         if (response?.code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
-            return ApiError.Unauthorized
+            return UnauthorizedError
         }
         val jsonString = response?.errorBody()?.string()
         val errorResponse = try {
@@ -98,7 +100,7 @@ class MappingApiErrorCallback<R>(
             Timber.e(exception, "Fail parsing error response: ${exception.message}")
             return exception
         }
-        return ApiError.Server(
+        return ServerError(
             code = response?.code().defaultZero(),
             serverMsg = errorResponse?.error.defaultEmpty()
         )
