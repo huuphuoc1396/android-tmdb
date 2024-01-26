@@ -1,6 +1,7 @@
 package com.example.tmdb.ui.features.main
 
 import com.example.tmdb.domain.models.errors.UnauthorizedError
+import com.example.tmdb.navigations.MovieDetailDestination
 import com.example.tmdb.navigations.Navigator
 import com.example.tmdb.states.NoUiStateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,8 +16,12 @@ class MainViewModel @Inject constructor(
     init {
         launch {
             // TODO("Remove later, to fake session timeout")
-            delay(5000L)
+            delay(10000L)
             setError(UnauthorizedError)
         }
+    }
+
+    fun goToDetail(id: String) {
+        tryNavigateTo(MovieDetailDestination(id))
     }
 }

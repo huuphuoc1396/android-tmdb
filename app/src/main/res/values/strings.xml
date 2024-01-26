@@ -8,4 +8,6 @@
     <string name="no_connection_error">No internet connection.</string>
     <string name="unknown_error">Host unknown error.</string>
     <string name="unauthorized_error">Your login session has expired! Please login again.</string>
+    <string name="movie_detail_id">Movie Detail ID: %1$s</string>
+    <string name="go_to_detail">Go to detail</string>
 </resources>
