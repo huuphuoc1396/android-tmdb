@@ -1,8 +1,8 @@
 package com.example.tmdb.ui.features.splash
 
-import com.example.tmdb.navigations.LoginDestination
+import com.example.tmdb.ui.LoginDestination
 import com.example.tmdb.navigations.Navigator
-import com.example.tmdb.navigations.SplashDestination
+import com.example.tmdb.ui.SplashDestination
 import com.example.tmdb.states.NoUiStateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay

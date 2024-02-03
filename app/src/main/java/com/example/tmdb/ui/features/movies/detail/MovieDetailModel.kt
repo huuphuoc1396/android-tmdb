@@ -1,7 +1,7 @@
 package com.example.tmdb.ui.features.movies.detail
 
 import androidx.lifecycle.SavedStateHandle
-import com.example.tmdb.navigations.MovieDetailDestination.getMovieId
+import com.example.tmdb.ui.MovieDetailDestination.getMovieId
 import com.example.tmdb.navigations.Navigator
 import com.example.tmdb.states.NoEvent
 import com.example.tmdb.states.UiStateDelegateImpl

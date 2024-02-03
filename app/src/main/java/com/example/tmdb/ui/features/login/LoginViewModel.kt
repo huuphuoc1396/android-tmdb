@@ -3,10 +3,11 @@ package com.example.tmdb.ui.features.login
 import com.example.tmdb.domain.extensions.defaultEmpty
 import com.example.tmdb.domain.usecases.LoginParams
 import com.example.tmdb.domain.usecases.LoginUseCase
-import com.example.tmdb.navigations.MainDestination
+import com.example.tmdb.ui.MainDestination
 import com.example.tmdb.navigations.Navigator
 import com.example.tmdb.states.UiStateDelegateImpl
 import com.example.tmdb.states.UiStateViewModel
+import com.example.tmdb.ui.LoginDestination
 import com.example.tmdb.ui.features.login.LoginViewModel.Event
 import com.example.tmdb.ui.features.login.LoginViewModel.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -48,7 +49,7 @@ class LoginViewModel @Inject constructor(
                 .onSuccess {
                     navigateTo(
                         route = MainDestination(),
-                        popUpToRoute = MainDestination(),
+                        popUpToRoute = LoginDestination(),
                         inclusive = true,
                     )
                 }

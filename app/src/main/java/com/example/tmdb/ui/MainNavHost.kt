@@ -5,10 +5,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.example.tmdb.navigations.LoginDestination
-import com.example.tmdb.navigations.MainDestination
-import com.example.tmdb.navigations.MovieDetailDestination
-import com.example.tmdb.navigations.SplashDestination
 import com.example.tmdb.navigations.composable
 import com.example.tmdb.ui.features.login.LoginScreen
 import com.example.tmdb.ui.features.main.MainScreen
