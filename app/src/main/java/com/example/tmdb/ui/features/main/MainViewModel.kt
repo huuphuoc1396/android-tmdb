@@ -1,7 +1,7 @@
 package com.example.tmdb.ui.features.main
 
 import com.example.tmdb.domain.models.errors.UnauthorizedError
-import com.example.tmdb.navigations.MovieDetailDestination
+import com.example.tmdb.ui.MovieDetailDestination
 import com.example.tmdb.navigations.Navigator
 import com.example.tmdb.states.NoUiStateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

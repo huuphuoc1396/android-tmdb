@@ -2,7 +2,7 @@ package com.example.tmdb.states
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.tmdb.navigations.LoginDestination
+import com.example.tmdb.ui.LoginDestination
 import com.example.tmdb.navigations.Navigator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
