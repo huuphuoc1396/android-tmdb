@@ -16,7 +16,7 @@ import com.example.tmdb.navigations.Navigator
 import com.example.tmdb.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-
+@ExperimentalMaterial3Api
 @ExperimentalComposeUiApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -24,7 +24,6 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var navigator: Navigator
 
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)

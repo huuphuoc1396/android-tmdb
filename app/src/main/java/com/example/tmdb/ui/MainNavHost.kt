@@ -1,5 +1,6 @@
 package com.example.tmdb.ui
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -11,6 +12,7 @@ import com.example.tmdb.ui.features.main.MainScreen
 import com.example.tmdb.ui.features.movies.detail.MovieDetailScreen
 import com.example.tmdb.ui.features.splash.SplashScreen
 
+@ExperimentalMaterial3Api
 @ExperimentalComposeUiApi
 @Composable
 fun MainNavHost(

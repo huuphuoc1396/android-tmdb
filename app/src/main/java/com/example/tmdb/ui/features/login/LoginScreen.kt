@@ -28,6 +28,7 @@ import com.example.tmdb.components.screen.ScreenContent
 import com.example.tmdb.extensions.showToast
 import com.example.tmdb.ui.theme.AppTheme
 
+@ExperimentalMaterial3Api
 @ExperimentalComposeUiApi
 @Composable
 fun LoginScreen(
@@ -56,7 +57,7 @@ fun LoginScreen(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@ExperimentalMaterial3Api
 @Composable
 fun LoginContent(
     uiState: LoginViewModel.UiState,
@@ -97,6 +98,7 @@ fun LoginContent(
     }
 }
 
+@ExperimentalMaterial3Api
 @Preview
 @Composable
 fun LoginScreenPreview() {
