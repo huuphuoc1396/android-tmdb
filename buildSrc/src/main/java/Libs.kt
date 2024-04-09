@@ -14,7 +14,7 @@ object Libs {
         const val COMPOSE_UI_TEST_JUNIT4 = "androidx.compose.ui:ui-test-junit4"
         const val COMPOSE_UI_TOOLING = "androidx.compose.ui:ui-tooling"
         const val COMPOSE_UI_TEST_MANIFEST = "androidx.compose.ui:ui-test-manifest"
-        const val COMPOSE_MATERIAL = "androidx.compose.material:material"
+        const val COMPOSE_MATERIAL = "androidx.compose.material3:material3"
         const val NAV_COMPOSE = "androidx.navigation:navigation-compose:${Versions.NAV_COMPOSE}"
 
         const val CORE_TESTING = "androidx.arch.core:core-testing:${Versions.CORE_TESTING}"
