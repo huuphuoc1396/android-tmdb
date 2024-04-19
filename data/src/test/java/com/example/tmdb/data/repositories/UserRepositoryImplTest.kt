@@ -27,7 +27,6 @@ class UserRepositoryImplTest {
         )
         coEvery {
             encryptedUserDatastore.saveUser(testUser.toUserModel())
-
         } returns Unit
         userRepositoryImpl.fetchUser()
     }
