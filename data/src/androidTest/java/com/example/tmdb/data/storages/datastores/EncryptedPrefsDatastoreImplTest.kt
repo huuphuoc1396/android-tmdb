@@ -12,10 +12,12 @@ class EncryptedPrefsDatastoreImplTest {
     private val testScope = TestScope()
     private val context = ApplicationProvider.getApplicationContext<Context>()
     private val encryptedUserDatastoreImpl = EncryptedPrefsDatastoreImpl(context)
-    private val TOKEN_TYPE = "Bear"
-    private val TOKEN_BODY = "oDE6UUqAoPxKKIoSF3D75KZrzV4qwLssoDE6UUqAoPxKKIoSF3D7PxKKIoSF3D75KZrzV4qwLss"
-    private val TEST_TOKEN = "$TOKEN_TYPE $TOKEN_BODY"
-    private val LOGIN_RESULT = true
+    companion object {
+        private const val TOKEN_TYPE = "Bear"
+        private const val TOKEN_BODY = "oDE6UUqAoPxKKIoSF3D75KZrzV4qwLssoDE6UUqAoPxKKIoSF3D7PxKKIoSF3D75KZrzV4qwLss"
+        private const val TEST_TOKEN = "$TOKEN_TYPE $TOKEN_BODY"
+        private const val LOGIN_RESULT = true
+    }
 
     @Test
     fun setLoggedInByResult() = testScope.runTest {
