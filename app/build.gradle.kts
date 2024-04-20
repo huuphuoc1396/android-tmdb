@@ -82,6 +82,10 @@ android {
     packaging {
         resources.excludes.add("META-INF/*")
     }
+
+    testOptions {
+        unitTests.all { it.useJUnitPlatform() }
+    }
 }
 
 dependencies {
@@ -128,7 +132,8 @@ dependencies {
 
     implementation(Libs.TIMBER)
 
-    testImplementation(Libs.JUNIT)
+    testImplementation(platform(Libs.JUnit5.BOM))
+    testImplementation(Libs.JUnit5.JUPITER)
     testImplementation(Libs.MOCKK)
     testImplementation(Libs.KOTEST)
     testImplementation(Libs.Kotlin.COROUTINES_TEST)
@@ -141,4 +146,6 @@ dependencies {
     androidTestImplementation(Libs.AndroidX.TEST_JUNIT)
     androidTestImplementation(Libs.AndroidX.TEST_ESPRESSO_CORE)
     androidTestImplementation(Libs.MOCKK_ANDROID)
+    androidTestImplementation(platform(Libs.JUnit5.BOM))
+    androidTestImplementation(Libs.JUnit5.JUPITER)
 }

@@ -89,9 +89,14 @@ dependencies {
     testImplementation(Libs.JUNIT)
     testImplementation(Libs.MOCKK)
     testImplementation(Libs.KOTEST)
+    testImplementation(Libs.TURBINE)
     testImplementation(Libs.Kotlin.COROUTINES_TEST)
 
     androidTestImplementation(Libs.AndroidX.TEST_JUNIT)
+    androidTestImplementation(Libs.Kotlin.COROUTINES_TEST)
+    androidTestImplementation(Libs.TURBINE)
+    androidTestImplementation(Libs.KOTEST)
+    androidTestImplementation(Libs.AndroidX.TEST_ESPRESSO_CORE)
 
     implementation(Libs.Datastore.SECURITY_DATASTORE)
     implementation(Libs.Datastore.SECURITY_DATASTORE_PREFERENCES)

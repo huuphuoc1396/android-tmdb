@@ -28,6 +28,7 @@ object Versions {
     const val TIMBER = "5.0.1"
 
     const val JUNIT = "4.13.2"
+    const val JUNIT5 = "5.10.1"
 
     const val JAVAX_INJECT = "1"
 

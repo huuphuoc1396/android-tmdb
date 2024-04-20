@@ -87,4 +87,9 @@ object Libs {
         const val PROTOC = "com.google.protobuf:protoc:${Versions.PROTOC}"
         const val JAVALITE = "com.google.protobuf:protobuf-javalite:${Versions.PROTOBUF_JAVALITE}"
     }
+
+    object JUnit5 {
+        const val BOM = "org.junit:junit-bom:${Versions.JUNIT5}"
+        const val JUPITER = "org.junit.jupiter:junit-jupiter"
+    }
 }
