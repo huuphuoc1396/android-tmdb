@@ -100,12 +100,20 @@ dependencies {
 
 protobuf {
     protoc {
-        artifact = "${Libs.Protobuf.PROTOC}:osx-x86_64"
+        artifact = if (osdetector.os == "osx") {
+            "${Libs.Protobuf.PROTOC}:osx-x86_64"
+        } else {
+            Libs.Protobuf.PROTOC
+        }
     }
 
     plugins {
         id("javalite") {
-            artifact = "${Libs.Protobuf.JAVALITE}:osx-x86_64"
+            artifact = if (osdetector.os == "osx") {
+                "${Libs.Protobuf.JAVALITE}:osx-x86_64"
+            } else {
+                Libs.Protobuf.JAVALITE
+            }
         }
     }
 
